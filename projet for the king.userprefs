@@ -1,0 +1,22 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Walker.cs">
+    <Files>
+      <File FileName="Assets\Scripts\AttackBox.cs" Line="24" Column="48" />
+      <File FileName="Assets\Scripts\CharController.cs" Line="74" Column="17" />
+      <File FileName="Assets\Scripts\Hero.cs" Line="59" Column="39" />
+      <File FileName="Assets\Scripts\Fighter.cs" Line="47" Column="7" />
+      <File FileName="Assets\Scripts\Colorable.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Walker.cs" Line="98" Column="17" />
+      <File FileName="Assets\Scripts\Minion.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\VisualController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Alive.cs" Line="45" Column="20" />
+      <File FileName="Assets\Scripts\BattleManager.cs" Line="31" Column="36" />
+      <File FileName="Assets\Scripts\AI_Controller.cs" Line="82" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
