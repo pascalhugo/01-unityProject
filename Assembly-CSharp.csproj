@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7D85D667-1378-00F6-9B2B-4BA0D96D8F33}</ProjectGuid>
+    <ProjectGuid>{BF3F2D37-4DBA-D7D1-B3DF-672BFD8A592F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Hero.cs" />
      <Compile Include="Assets\Scripts\Minion.cs" />
      <Compile Include="Assets\Scripts\SelectableByMouse.cs" />
+     <Compile Include="Assets\Scripts\StopBox.cs" />
      <Compile Include="Assets\Scripts\TargetableByAI.cs" />
      <Compile Include="Assets\Scripts\TargetableByMouse.cs" />
      <Compile Include="Assets\Scripts\VisualController.cs" />
@@ -74,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{F951F0F5-8A52-55CF-5EC5-C27A859BB07A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{17349486-EF72-7FF1-6950-6B72FED496FB}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

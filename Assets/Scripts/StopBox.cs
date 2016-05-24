@@ -1,30 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AttackBox : MonoBehaviour {
+public class StopBox : MonoBehaviour {
 
-	public Fighter fighter;
-	public Collider2D collider;
+	public Rigidbody2D rigi2D;
+	public CharacterController charControl;
 
 	public string AttackerTag;
 	public string TargetTag;
 
 	void Start() {
-		fighter = GetComponentInParent<Fighter> ();
-		collider = GetComponentInParent<Collider2D> ();
+		rigi2D = GetComponentInParent<Rigidbody2D> ();
+		charControl = GetComponentInParent<CharacterController> ();
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (AttackerTag == "Enemy") {
 			if (col.isTrigger != true && (col.CompareTag ("Ally") || col.CompareTag ("Player"))) {
-				col.SendMessageUpwards ("GetHit", fighter);
+				Debug.Log ("Ally");
+				col.SendMessageUpwards ("ClearCommands", charControl);
 			}
 		} else if (AttackerTag == "Ally") {
 			if (col.isTrigger != true && col.CompareTag ("Enemy")) {
-				col.SendMessageUpwards ("GetHit", fighter);
+				Debug.Log ("Enemy");
+				col.SendMessageUpwards ("ClearCommands", charControl);
 			}
 		}
 	}
-	
-
 }
