@@ -46,13 +46,11 @@ public class CharController : MonoBehaviour {
 	}
 
 	private void ClearCommands() {
-		Debug.Log ("ClearCommands");
 		currentTarget = null;
 		fighter.StopFight();
 		walker.StopHunt();
 		walker.StopWalk();
 		CommandIssued = false;
-		Debug.Log ("ClearCommands 2");
 	}
 
 	#region SendMessage handlers

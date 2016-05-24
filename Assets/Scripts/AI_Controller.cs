@@ -19,7 +19,8 @@ public class AI_Controller : MonoBehaviour {
 	public GameObject darkKnightPrefab;
 	public GameObject ogrePrefab;
 		
-	private TargetableByAI[] targets;
+	private TargetableByAIEnemy[] targetsEnemy;
+	private TargetableByAIAlly[] targetsAlly;
 	private Minion[] minions;
 
 
@@ -38,7 +39,8 @@ public class AI_Controller : MonoBehaviour {
 
 
 	void Start() {
-		targets = FindObjectsOfType<TargetableByAI>();
+		targetsEnemy = FindObjectsOfType<TargetableByAIEnemy>();
+		targetsAlly = FindObjectsOfType<TargetableByAIAlly>();
 	}
 
 
@@ -48,20 +50,47 @@ public class AI_Controller : MonoBehaviour {
 		}
 	}
 
-	private TargetableByAI GetRandomTarget() {
-		return targets[ UnityEngine.Random.Range(0, targets.Length) ];
+	/**
+	 * Enemy target
+	 */
+	private TargetableByAIEnemy GetRandomTargetEnemy() {
+		return targetsEnemy[ UnityEngine.Random.Range(0, targetsEnemy.Length) ];
 	}
 
-	public TargetableByAI GetClosestTarget(Vector3 position) {
+	public TargetableByAIEnemy GetClosestTargetEnemy(Vector3 position) {
 		float minDistance = 99999;
-		TargetableByAI closestTarget = null;
+		TargetableByAIEnemy closestTarget = null;
 
-		foreach(TargetableByAI target in targets) {
+		foreach(TargetableByAIEnemy target in targetsEnemy) {
 			if ((target != null) &&(!target.GetComponent<Alive>().IsDead)) {
 				float distance = Vector3.Distance(position, target.transform.position);
 				if ((distance < minDistance) || (closestTarget == null)) {
 					minDistance = distance;
 					closestTarget = target;
+				}
+			}
+		}
+
+		return closestTarget;
+	}
+
+	/**
+	 * Ally target
+	 */
+	private TargetableByAIAlly GetRandomTargetAlly() {
+		return targetsAlly[ UnityEngine.Random.Range(0, targetsAlly.Length) ];
+	}
+
+	public TargetableByAIAlly GetClosestTargetAlly(Vector3 position) {
+		float minDistance = 99999;
+		TargetableByAIAlly closestTarget = null;
+
+		foreach(TargetableByAIAlly targetAlly in targetsAlly) {
+			if ((targetAlly != null) &&(!targetAlly.GetComponent<Alive>().IsDead)) {
+				float distance = Vector3.Distance(position, targetAlly.transform.position);
+				if ((distance < minDistance) || (closestTarget == null)) {
+					minDistance = distance;
+					closestTarget = targetAlly;
 				}
 			}
 		}

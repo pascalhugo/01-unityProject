@@ -56,7 +56,7 @@ public class Hero : MonoBehaviour {
 				StartCoroutine ("AttackCoroutine");
 			}
 		} else {
-			rigid2D.velocity = new Vector2 (0,0);
+			rigid2D.velocity = new Vector2 (0, 0);
 		}
 	}
 
