@@ -15,6 +15,7 @@ public class StopBox : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
+		Debug.Log ("OnTriggerEnter2D");
 		if (AttackerTag == "Enemy") {
 			if (col.isTrigger != true && (col.CompareTag ("Ally") || col.CompareTag ("Player"))) {
 				Debug.Log ("Ally");

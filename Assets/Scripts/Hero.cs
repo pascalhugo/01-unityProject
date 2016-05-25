@@ -9,67 +9,19 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
-using System.Collections;
 
 public class Hero : MonoBehaviour {
 
 	private CharController charController;
 	private Alive alive;
-	private Rigidbody2D rigid2D;
-	private VisualController visualController;
-	private Fighter fighter;
-
-	public float maxSpeed = 10f;
-	public bool facingRight = false;
-	public bool isAttacking = false;
 
 	void Start() {
 		charController = GetComponent<CharController>();
 		alive = GetComponent<Alive>();
-		rigid2D = GetComponent<Rigidbody2D> ();
-		visualController = GetComponent<VisualController>();
-		fighter = GetComponent<Fighter>();
-	}
-
-	void FixedUpdate() {
-		float moveX = Input.GetAxis ("Horizontal");
-		float moveY = Input.GetAxis ("Vertical");
-
-		bool attacking = Input.GetButtonDown ("Fire1");
-
-		if (!alive.IsDead && !isAttacking) {
-			rigid2D.velocity = new Vector2 (moveX * maxSpeed, moveY * maxSpeed);
-
-			if (moveX > 0 && !facingRight) {
-				Flip ();
-			} else if (moveX < 0 && facingRight) {
-				Flip ();
-			}
-
-			if (moveX != 0 || moveY != 0) {
-				visualController.PlayWalk ();
-			} else {
-				visualController.StopWalk ();
-			}
-
-			if (attacking && !isAttacking) {
-				StartCoroutine ("AttackCoroutine");
-			}
-		} else {
-			rigid2D.velocity = new Vector2 (0, 0);
-		}
 	}
 
 	public bool IsDead() {
 		return alive.IsDead;
-	}
-
-	void Flip() 
-	{
-		facingRight = !facingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
 	}
 
 	#region SendMessage handlers
@@ -81,11 +33,5 @@ public class Hero : MonoBehaviour {
 	}
 	#endregion
 
-	private IEnumerator AttackCoroutine() {
-		isAttacking = !isAttacking;
-		visualController.PlayAttack ();
-		yield return new WaitForSeconds( fighter.attackRate );
-		isAttacking = !isAttacking; 
-	}
 }
 

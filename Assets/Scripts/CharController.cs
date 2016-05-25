@@ -104,8 +104,4 @@ public class CharController : MonoBehaviour {
 		visualController.PlayDeath();
 	}
 	#endregion
-
-	void OnCollisionEnter() {
-		Debug.Log("OnCollisionEnter");
-	}
 }

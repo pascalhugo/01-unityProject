@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AI_Controller.cs">
+    <Files>
+      <File FileName="Assets\Scripts\AttackBox.cs" Line="26" Column="4" />
+      <File FileName="Assets\Scripts\AI_Controller.cs" Line="82" Column="3" />
+      <File FileName="Assets\Scripts\TargetableByAIAlly.cs" Line="16" Column="2" />
+      <File FileName="Assets\Scripts\TargetableByAIEnemy.cs" Line="16" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

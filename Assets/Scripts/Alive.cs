@@ -43,6 +43,7 @@ public class Alive : MonoBehaviour {
 	}
 
 	public void GetHit(Fighter attacker) {
+		Debug.Log ("GetHit");
 		if (HP > 0) {
 			HP -= attacker.damage;
 			if (HP > 0) {

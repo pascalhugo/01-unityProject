@@ -58,7 +58,7 @@ public class AI_Controller : MonoBehaviour {
 	}
 
 	public TargetableByAIEnemy GetClosestTargetEnemy(Vector3 position) {
-		float minDistance = 99999;
+		float minDistance = 1;
 		TargetableByAIEnemy closestTarget = null;
 
 		foreach(TargetableByAIEnemy target in targetsEnemy) {

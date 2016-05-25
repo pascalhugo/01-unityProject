@@ -40,6 +40,7 @@ public class Controller : MonoBehaviour {
 			selectedCharacter.Command_Attack( target );
 			target.SendMessage("OnTargeted", SendMessageOptions.DontRequireReceiver);
 			currentlyTargetedChar = true;
+			UnSeletedCharacter();
 		}
 	}
 
@@ -55,7 +56,7 @@ public class Controller : MonoBehaviour {
 
 		//Right click deselect character
 		if (Input.GetMouseButtonDown(1)) {
-			selectedCharacter = null;
+			UnSeletedCharacter();
 		}
 
 		if (!currentlySelectedChar && !currentlyTargetedChar && Input.GetMouseButtonDown(0)) {
@@ -68,8 +69,12 @@ public class Controller : MonoBehaviour {
 
 	private Vector3 GetWorldClickPosition() {
 		Vector3 worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+		UnSeletedCharacter();
 		return new Vector3(worldPos.x, Mathf.Clamp(worldPos.y, minY, maxY), worldPos.z);
 	}
 
+	private void UnSeletedCharacter() {
+		selectedCharacter = null;
+	}
 
 }
