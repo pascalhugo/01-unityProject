@@ -17,6 +17,7 @@ public class Fighter : MonoBehaviour {
 	public float attackRate = 1f;
 
 	private Transform myTr;
+	private SoldierType soldierType;
 
 	private bool fighting = false;
 	public bool IsFighting {
@@ -25,25 +26,53 @@ public class Fighter : MonoBehaviour {
 
 	void Start() {
 		myTr = transform;
+		soldierType = GetComponent<SoldierType> ();
 	}
 
 
 	public void Fight(Alive target) {
 		fighting = true;
-		StartCoroutine( "FightCoroutine", target );
+		if (soldierType.IsMelee) {
+			StartCoroutine ("FightCoroutineMelee", target);
+		} else {
+			StartCoroutine ("FightCoroutineRange", target);
+		}
 	}
 
 	public void StopFight() {
 		fighting = false;
-		StopCoroutine( "FightCoroutine" );
+		StopCoroutine("FightCoroutineMelee");
+		StopCoroutine("FightCoroutineRange");
 	}
 	
-	private IEnumerator FightCoroutine(Alive target) {
+	private IEnumerator FightCoroutineMelee(Alive target) {
 		//Transform attackableSpot = target.GetClosestAttackableSpot( myTr.position );
 		//while ( fighting && !target.IsDead && IsCloseEnough(attackableSpot.position) ) {
 		while ( fighting && (target != null) && !target.IsDead && IsCloseToFight(target.transform.position) ) {
 			SendMessage("OnAttack", target, SendMessageOptions.DontRequireReceiver);
 			yield return new WaitForSeconds(.4f);
+			target.GetHit( this );
+			yield return new WaitForSeconds( attackRate );
+		}
+
+		if (fighting && !target.IsDead) {
+			SendMessage("OnTargetLost", target, SendMessageOptions.DontRequireReceiver);
+		}
+
+		if (target.IsDead) {
+			SendMessage("OnTargetDead", target, SendMessageOptions.DontRequireReceiver);
+		}
+
+		fighting = false;
+	}
+
+	private IEnumerator FightCoroutineRange(Alive target) {
+		//Transform attackableSpot = target.GetClosestAttackableSpot( myTr.position );
+		//while ( fighting && !target.IsDead && IsCloseEnough(attackableSpot.position) ) {
+		while ( fighting && (target != null) && !target.IsDead) {
+			SendMessage("OnAttack", target, SendMessageOptions.DontRequireReceiver);
+			// A remplacer par une coroutine qui lancera la suite quand la flèche atteindra sa cible
+			yield return new WaitForSeconds(1f);
 			target.GetHit( this );
 			yield return new WaitForSeconds( attackRate );
 		}
@@ -71,7 +100,7 @@ public class Fighter : MonoBehaviour {
 	}
 	
 	private bool IsCloseToFight(Vector3 target) {
-		return IsCloseEnough(target) && !IsCloseTooMuch(target);
+		return IsCloseEnough (target) && !IsCloseTooMuch (target);
 	}
 }
 

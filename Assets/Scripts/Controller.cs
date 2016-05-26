@@ -37,7 +37,7 @@ public class Controller : MonoBehaviour {
 
 	public void SetTarget(Alive target) {
 		if (selectedCharacter != null) {
-			selectedCharacter.Command_Attack( target );
+			selectedCharacter.Command_AttackMelee( target );
 			target.SendMessage("OnTargeted", SendMessageOptions.DontRequireReceiver);
 			currentlyTargetedChar = true;
 			UnSeletedCharacter();

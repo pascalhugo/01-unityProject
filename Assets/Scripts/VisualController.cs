@@ -67,7 +67,4 @@ public class VisualController : MonoBehaviour {
 		anim.SetTrigger( hitID );
 	}
 	#endregion
-
-
-
 }

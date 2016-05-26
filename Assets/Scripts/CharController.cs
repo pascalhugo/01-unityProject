@@ -33,13 +33,33 @@ public class CharController : MonoBehaviour {
 		CommandIssued = true;
 	}
 
-	public void Command_Attack(Alive target) {
+	public void Command_AttackMelee(Alive target) {
 		if (target.Equals(currentTarget)) {
 			return;
 		}
 		ClearCommands();
 		currentTarget = target;
 		walker.Hunt(target);
+		CommandIssued = true;
+	}
+
+	public void Command_AttackRange(Alive target) {
+		if (target.Equals(currentTarget)) {
+			return;
+		}
+		ClearCommands();
+		currentTarget = target;
+		fighter.Fight(target);
+		CommandIssued = true;
+	}
+
+	public void Command_AttackMagic(Alive target) {
+		if (target.Equals(currentTarget)) {
+			return;
+		}
+		ClearCommands();
+		currentTarget = target;
+		fighter.Fight(target);
 		CommandIssued = true;
 	}
 

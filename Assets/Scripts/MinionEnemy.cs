@@ -24,7 +24,7 @@ public class MinionEnemy : MonoBehaviour {
 	private void FightClosestTarget() {
 		TargetableByAIEnemy closestTargetEnemy = AI_ControllerEnemy.Instance.GetClosestTargetEnemy(transform.position);
 		if (closestTargetEnemy != null) {
-			charController.Command_Attack (closestTargetEnemy.GetComponent<Alive> ());
+			charController.Command_AttackMelee (closestTargetEnemy.GetComponent<Alive> ());
 		}
 	}
 
@@ -34,9 +34,11 @@ public class MinionEnemy : MonoBehaviour {
 	}
 
 	void OnGotHit(Fighter attacker) {
-		Alive attackersAlive = attacker.GetComponent<Alive>();
-		if (!fighter.IsFighting && !attackersAlive.IsDead && !alive.IsDead) {
-			charController.Command_Attack( attackersAlive );
+		if (attacker.GetComponent<SoldierType>().IsMelee) {
+			Alive attackersAlive = attacker.GetComponent<Alive> ();
+			if (!fighter.IsFighting && !attackersAlive.IsDead && !alive.IsDead) {
+				charController.Command_AttackMelee (attackersAlive);
+			}
 		}
 	}
 	#endregion

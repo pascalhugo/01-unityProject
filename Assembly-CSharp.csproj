@@ -49,7 +49,9 @@
      <Compile Include="Assets\HeroesAndVillains_Fantasy\Examples\Demo2\Scripts\RandomCharacterController.cs" />
      <Compile Include="Assets\Scripts\AI\EngageTriggerAlly.cs" />
      <Compile Include="Assets\Scripts\AI\EngageTriggerEnemy.cs" />
+     <Compile Include="Assets\Scripts\AI\RallyPointMagic.cs" />
      <Compile Include="Assets\Scripts\AI\RallyPointMelee.cs" />
+     <Compile Include="Assets\Scripts\AI\RallyPointRange.cs" />
      <Compile Include="Assets\Scripts\AI_ControllerAlly.cs" />
      <Compile Include="Assets\Scripts\AI_ControllerEnemy.cs" />
      <Compile Include="Assets\Scripts\Alive.cs" />
@@ -64,8 +66,9 @@
      <Compile Include="Assets\Scripts\Hero.cs" />
      <Compile Include="Assets\Scripts\MinionAlly.cs" />
      <Compile Include="Assets\Scripts\MinionEnemy.cs" />
+     <Compile Include="Assets\Scripts\Projectile\Arrow.cs" />
      <Compile Include="Assets\Scripts\SelectableByMouse.cs" />
-     <Compile Include="Assets\Scripts\StopBox.cs" />
+     <Compile Include="Assets\Scripts\SoldierType.cs" />
      <Compile Include="Assets\Scripts\TargetableByAIAlly.cs" />
      <Compile Include="Assets\Scripts\TargetableByAIEnemy.cs" />
      <Compile Include="Assets\Scripts\TargetableByMouse.cs" />

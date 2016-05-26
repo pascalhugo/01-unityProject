@@ -4,12 +4,10 @@ using System.Collections;
 public class EngageTriggerAlly : MonoBehaviour {
 
 	private Fighter fighter;
-	private Collider2D collider;
 	private MinionAlly minionAlly; 
 
 	void Start() {
 		fighter = GetComponentInParent<Fighter> ();
-		collider = GetComponentInParent<Collider2D> ();
 		minionAlly = GetComponentInParent<MinionAlly> ();
 	}
 

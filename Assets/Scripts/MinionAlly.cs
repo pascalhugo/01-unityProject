@@ -6,11 +6,13 @@ public class MinionAlly : MonoBehaviour {
 	private CharController charController;
 	private Fighter fighter;
 	private Alive alive;
+	private SoldierType soldierType;
 
 	void Start() {
 		charController = GetComponent<CharController>();
 		fighter = GetComponent<Fighter>();
 		alive = GetComponent<Alive>();
+		soldierType = GetComponent<SoldierType>();
 	}
 
 	public void Fight() {
@@ -22,9 +24,17 @@ public class MinionAlly : MonoBehaviour {
 	}
 
 	private void FightClosestTarget() {
-		TargetableByAIAlly closestTargetAlly = AI_ControllerAlly.Instance.GetClosestTargetAlly(transform.position);
+		TargetableByAIAlly closestTargetAlly = AI_ControllerAlly.Instance.GetClosestTargetAlly(transform.position, soldierType.GetSoldierType);
 		if (closestTargetAlly != null) {
-			charController.Command_Attack (closestTargetAlly.GetComponent<Alive> ());
+			if (soldierType.melee) {
+				charController.Command_AttackMelee (closestTargetAlly.GetComponent<Alive> ());
+			} else if (soldierType.range) {
+				charController.Command_AttackRange (closestTargetAlly.GetComponent<Alive> ());
+			} else if (soldierType.magic) {
+				charController.Command_AttackMagic (closestTargetAlly.GetComponent<Alive> ());
+			} else {
+				Debug.Log ("Pas de classe déterminé");
+			}
 		} else {
 			charController.OnWalkToRallyPoint ();
 		}
@@ -38,7 +48,7 @@ public class MinionAlly : MonoBehaviour {
 	void OnGotHit(Fighter attacker) {
 		Alive attackersAlive = attacker.GetComponent<Alive>();
 		if (!fighter.IsFighting && !attackersAlive.IsDead && !alive.IsDead) {
-			charController.Command_Attack( attackersAlive );
+			charController.Command_AttackMelee( attackersAlive );
 		}
 	}
 	#endregion

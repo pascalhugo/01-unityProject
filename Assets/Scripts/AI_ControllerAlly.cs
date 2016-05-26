@@ -23,7 +23,9 @@ public class AI_ControllerAlly : MonoBehaviour {
 	private MinionAlly[] minionsAlly;
 
 	public static AI_ControllerAlly Instance { get; private set; }
-	public float maxDistanceEngage = 6;
+	public float maxDistanceEngageMelee = 6;
+	public float maxDistanceEngageRange = 30;
+	public float maxDistanceEngageMagic = 15;
 
 	void Awake () {
 		if (Instance == null) {
@@ -55,14 +57,15 @@ public class AI_ControllerAlly : MonoBehaviour {
 		return targetsAlly[ UnityEngine.Random.Range(0, targetsAlly.Length) ];
 	}
 
-	public TargetableByAIAlly GetClosestTargetAlly(Vector3 position) {
+	public TargetableByAIAlly GetClosestTargetAlly(Vector3 position, string type) {
 		float minDistance = 99999;
+		float maxDistanceEngage = GetDistanceEngageMax (type);
 		TargetableByAIAlly closestTarget = null;
 
 		foreach(TargetableByAIAlly targetAlly in targetsAlly) {
 			if ((targetAlly != null) &&(!targetAlly.GetComponent<Alive>().IsDead)) {
 				float distance = Vector3.Distance(position, targetAlly.transform.position);
-				if (((distance < minDistance) || (closestTarget == null)) && distance < maxDistanceEngage) {
+				if (((distance < minDistance) || (closestTarget == null)) && (distance < maxDistanceEngage) ) {
 					minDistance = distance;
 					closestTarget = targetAlly;
 				}
@@ -175,6 +178,18 @@ public class AI_ControllerAlly : MonoBehaviour {
 	}
 	private void SpawnOgreAnywhere() {
 		SpawnMinionAnywhere(ogrePrefab);
+	}
+
+	public float GetDistanceEngageMax(string type) {
+		float distance = 99999;
+		if (type == "melee") {
+			distance = maxDistanceEngageMelee;
+		} else if (type == "range") {
+			distance = maxDistanceEngageRange;
+		} else if (type == "magic") {
+			distance = maxDistanceEngageMagic;
+		}
+		return distance;
 	}
 }
 

@@ -14,10 +14,13 @@ public class Hero : MonoBehaviour {
 
 	private CharController charController;
 	private Alive alive;
+	private VisualController visualController;
 
 	void Start() {
 		charController = GetComponent<CharController>();
 		alive = GetComponent<Alive>();
+		visualController = GetComponent<VisualController> ();
+		visualController.FaceRight ();
 	}
 
 	public bool IsDead() {
@@ -28,7 +31,7 @@ public class Hero : MonoBehaviour {
 	void OnGotHit(Fighter attacker) {
 		Alive attackersAlive = attacker.GetComponent<Alive>();
 		if (!charController.CommandIssued && !attackersAlive.IsDead) {
-			charController.Command_Attack( attackersAlive );
+			charController.Command_AttackMelee( attackersAlive );
 		}
 	}
 	#endregion
