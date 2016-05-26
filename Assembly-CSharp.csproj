@@ -3,8 +3,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{BF3F2D37-4DBA-D7D1-B3DF-672BFD8A592F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -33,51 +34,55 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>D:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:\Program Files\Unity\Editor\Data\Managed\UnityEditor.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\HeroesAndVillains_Fantasy\Examples\Demo1\Scripts\DemoHeroController.cs" />
-    <Compile Include="Assets\HeroesAndVillains_Fantasy\Examples\Demo2\Scripts\RandomCharacterController.cs" />
-    <Compile Include="Assets\Scripts\AI_Controller.cs" />
-    <Compile Include="Assets\Scripts\Alive.cs" />
-    <Compile Include="Assets\Scripts\Ally.cs" />
-    <Compile Include="Assets\Scripts\AttackBox.cs" />
-    <Compile Include="Assets\Scripts\BattleManager.cs" />
-    <Compile Include="Assets\Scripts\CharController.cs" />
-    <Compile Include="Assets\Scripts\Colorable.cs" />
-    <Compile Include="Assets\Scripts\Controller.cs" />
-    <Compile Include="Assets\Scripts\EyesBlink.cs" />
-    <Compile Include="Assets\Scripts\Fighter.cs" />
-    <Compile Include="Assets\Scripts\Hero.cs" />
-    <Compile Include="Assets\Scripts\Minion.cs" />
-    <Compile Include="Assets\Scripts\SelectableByMouse.cs" />
-    <Compile Include="Assets\Scripts\TargetableByAIAlly.cs" />
-    <Compile Include="Assets\Scripts\TargetableByAIEnemy.cs" />
-    <Compile Include="Assets\Scripts\TargetableByMouse.cs" />
-    <Compile Include="Assets\Scripts\VisualController.cs" />
-    <Compile Include="Assets\Scripts\Walker.cs" />
-    <Compile Include="Assets\Scripts\YSorter.cs" />
-    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>D:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>D:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\HeroesAndVillains_Fantasy\Examples\Demo1\Scripts\DemoHeroController.cs" />
+     <Compile Include="Assets\HeroesAndVillains_Fantasy\Examples\Demo2\Scripts\RandomCharacterController.cs" />
+     <Compile Include="Assets\Scripts\AI\EngageTriggerAlly.cs" />
+     <Compile Include="Assets\Scripts\AI\EngageTriggerEnemy.cs" />
+     <Compile Include="Assets\Scripts\AI\RallyPointMelee.cs" />
+     <Compile Include="Assets\Scripts\AI_ControllerAlly.cs" />
+     <Compile Include="Assets\Scripts\AI_ControllerEnemy.cs" />
+     <Compile Include="Assets\Scripts\Alive.cs" />
+     <Compile Include="Assets\Scripts\Ally.cs" />
+     <Compile Include="Assets\Scripts\AttackBox.cs" />
+     <Compile Include="Assets\Scripts\BattleManager.cs" />
+     <Compile Include="Assets\Scripts\CharController.cs" />
+     <Compile Include="Assets\Scripts\Colorable.cs" />
+     <Compile Include="Assets\Scripts\Controller.cs" />
+     <Compile Include="Assets\Scripts\EyesBlink.cs" />
+     <Compile Include="Assets\Scripts\Fighter.cs" />
+     <Compile Include="Assets\Scripts\Hero.cs" />
+     <Compile Include="Assets\Scripts\MinionAlly.cs" />
+     <Compile Include="Assets\Scripts\MinionEnemy.cs" />
+     <Compile Include="Assets\Scripts\SelectableByMouse.cs" />
+     <Compile Include="Assets\Scripts\StopBox.cs" />
+     <Compile Include="Assets\Scripts\TargetableByAIAlly.cs" />
+     <Compile Include="Assets\Scripts\TargetableByAIEnemy.cs" />
+     <Compile Include="Assets\Scripts\TargetableByMouse.cs" />
+     <Compile Include="Assets\Scripts\VisualController.cs" />
+     <Compile Include="Assets\Scripts\Walker.cs" />
+     <Compile Include="Assets\Scripts\YSorter.cs" />
+     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{17349486-EF72-7FF1-6950-6B72FED496FB}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
+      <Project>{17349486-EF72-7FF1-6950-6B72FED496FB}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -87,4 +92,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

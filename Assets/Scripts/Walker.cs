@@ -22,6 +22,8 @@ public class Walker : MonoBehaviour {
 	private Vector3 walkEnd;
 	private float walkSpeedModificator;
 
+	public bool goToRallyPoint = false;
+	public bool isInRallyPoint = false;
 	private bool hunting = false;
 
 	private Vector3 personalOffset;
@@ -69,10 +71,8 @@ public class Walker : MonoBehaviour {
 	}
 
 	public void Hunt(Alive target) {
-		if (gameObject.tag != "Player") {
-			hunting = true;
-			StartCoroutine ("HuntCoroutine", target);
-		}
+		hunting = true;
+		StartCoroutine ("HuntCoroutine", target);
 	}
 
 	public void StopHunt() {
@@ -114,6 +114,16 @@ public class Walker : MonoBehaviour {
 
 	private bool IsCloseToFight(Vector3 target) {
 		return IsCloseEnough(target) && !IsCloseTooMuch(target);
+	}
+
+	public bool GoToRallyPoint {
+		get { return goToRallyPoint; }
+		set { goToRallyPoint = value; }
+	}
+
+	public bool IsInRallyPoint {
+		get { return isInRallyPoint; }
+		set { isInRallyPoint = value; }
 	}
 }
 

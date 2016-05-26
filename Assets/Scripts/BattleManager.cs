@@ -28,7 +28,8 @@ public class BattleManager : MonoBehaviour {
 		// knight.Command_WalkTo(new Vector3(-4f, -2.5f, 0f));
 
 		yield return new WaitForSeconds(0f);
-		AI_Controller.Instance.SendWave_1();
+		AI_ControllerEnemy.Instance.SendWave_1();
+		AI_ControllerAlly.Instance.SendWave_1();
 
 		/*do {
 			yield return new WaitForSeconds(1f);

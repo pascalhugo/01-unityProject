@@ -43,6 +43,8 @@ public class Fighter : MonoBehaviour {
 		//while ( fighting && !target.IsDead && IsCloseEnough(attackableSpot.position) ) {
 		while ( fighting && (target != null) && !target.IsDead && IsCloseToFight(target.transform.position) ) {
 			SendMessage("OnAttack", target, SendMessageOptions.DontRequireReceiver);
+			yield return new WaitForSeconds(.4f);
+			target.GetHit( this );
 			yield return new WaitForSeconds( attackRate );
 		}
 

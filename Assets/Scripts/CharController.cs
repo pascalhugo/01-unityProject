@@ -13,6 +13,8 @@ public class CharController : MonoBehaviour {
 	private BoxCollider2D bCollider;
 
 	public bool CommandIssued { get; private set; }
+	public float rallyDistanceMin = 0.1f;
+	public float rallyDistanceMax = 1f;
 
 	void Start() {
 		myTr = transform;
@@ -34,7 +36,7 @@ public class CharController : MonoBehaviour {
 	public void Command_Attack(Alive target) {
 		if (target.Equals(currentTarget)) {
 			return;
-		} 
+		}
 		ClearCommands();
 		currentTarget = target;
 		walker.Hunt(target);
@@ -51,6 +53,22 @@ public class CharController : MonoBehaviour {
 		walker.StopHunt();
 		walker.StopWalk();
 		CommandIssued = false;
+	}
+
+	public void OnWalkToRallyPoint() {
+		if (walker.IsInRallyPoint != true) {
+			walker.GoToRallyPoint = true;
+			StartCoroutine ("CheckRallyPoint");
+		}
+	}
+
+	private IEnumerator CheckRallyPoint() {
+		walker.WalkTo(new Vector3(transform.position.x - 100, transform.position.y, transform.position.z));
+		while (walker.GoToRallyPoint) {
+			yield return new WaitForSeconds(UnityEngine.Random.Range(rallyDistanceMin, rallyDistanceMax));
+		}
+		walker.WalkTo(new Vector3(transform.position.x, transform.position.y, transform.position.z));
+		walker.GoToRallyPoint = false;
 	}
 
 	#region SendMessage handlers
