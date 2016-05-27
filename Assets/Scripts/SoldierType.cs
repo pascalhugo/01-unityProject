@@ -6,6 +6,9 @@ public class SoldierType : MonoBehaviour {
 	public bool melee;
 	public bool range;
 	public bool magic;
+	public bool enemy;
+	public bool ally;
+
 
 	public string GetSoldierType {
 		get {
@@ -31,5 +34,13 @@ public class SoldierType : MonoBehaviour {
 
 	public bool IsMagic {
 		get { return magic; }
+	}
+
+	public bool IsAlly {
+		get { return ally; }
+	}
+		
+	public bool IsEnemy {
+		get { return enemy; }
 	}
 }

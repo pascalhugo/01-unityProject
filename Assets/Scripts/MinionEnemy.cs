@@ -34,7 +34,7 @@ public class MinionEnemy : MonoBehaviour {
 	}
 
 	void OnGotHit(Fighter attacker) {
-		if (attacker.GetComponent<SoldierType>().IsMelee) {
+		if (attacker.GetComponent<SoldierType>().IsMelee && attacker.GetComponent<SoldierType>().IsAlly) {
 			Alive attackersAlive = attacker.GetComponent<Alive> ();
 			if (!fighter.IsFighting && !attackersAlive.IsDead && !alive.IsDead) {
 				charController.Command_AttackMelee (attackersAlive);
