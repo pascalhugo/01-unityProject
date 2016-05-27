@@ -10,7 +10,6 @@ public class Arrow : MonoBehaviour {
 	void Start () {
 		rigidBody = GetComponent<Rigidbody2D> ();
 		rigidBody.AddForce (transform.up*speed, ForceMode2D.Impulse);
-		Debug.Log (transform);
 		transform.Rotate (Vector3.forward * 270);
 
 

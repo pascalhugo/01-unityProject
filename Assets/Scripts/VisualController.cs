@@ -4,6 +4,7 @@ using System.Collections;
 public class VisualController : MonoBehaviour {
 
 	public Animator anim;
+	public Animation animation;
 	public Transform swappingFaceTransform;
 	public Transform transform;
 
@@ -20,6 +21,8 @@ public class VisualController : MonoBehaviour {
 	private int castTypeID = Animator.StringToHash("castType");
 
 	private bool isFacingLeft = true;
+
+	public float fireAnimationDuration = 2f;
 
 	void Start () {
 		transform = GetComponent<Transform> ();
@@ -65,13 +68,15 @@ public class VisualController : MonoBehaviour {
 		anim.SetFloat( attackTypeID, UnityEngine.Random.Range(0, 2) );
 		anim.SetTrigger( attackID );
 
-		Debug.Log (fighter.Target);
-		Vector3 dir = fighter.Target.transform.position - transform.position;
-		dir = fighter.Target.transform.InverseTransformDirection(dir);
-		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-		Debug.Log (angle);
+		// Animation animator = GetComponent<Animation>();
+		// animator.Play();
+		// Debug.Log(animator.clip.length);
+		// yield return new WaitForSeconds(anim.clip.length);
 
-		GameObject arrow = Instantiate (projectile, new Vector3 (transform.position.x, transform.position.y + 0.9f, transform.position.z), Quaternion.AngleAxis (angle + 270, Vector3.forward)) as GameObject;
+		// AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+		// Debug.Log(info.length);
+
+		StartCoroutine ("ShootArrow");
 	}
 	
 	public void PlayCast() {
@@ -88,4 +93,15 @@ public class VisualController : MonoBehaviour {
 		anim.SetTrigger( hitID );
 	}
 	#endregion
+
+	// Wait the middle of fire animation before show the arrow
+	private IEnumerator ShootArrow() {
+		yield return new WaitForSeconds (fireAnimationDuration);
+
+		Vector3 dir = fighter.Target.transform.position - transform.position;
+		dir = fighter.Target.transform.InverseTransformDirection(dir);
+		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+		GameObject arrow = Instantiate (projectile, new Vector3 (transform.position.x, transform.position.y + 0.9f, transform.position.z), Quaternion.AngleAxis (angle + 270, Vector3.forward)) as GameObject;
+	}
 }
