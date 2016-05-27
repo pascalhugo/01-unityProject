@@ -131,13 +131,16 @@ public class CharController : MonoBehaviour {
 	}
 
 	void OnTargetLost(Alive target) {
-		if (!IsDead() && (target != null)) {
-			walker.Hunt(target);
+		if (!IsDead () && (target != null)) {
+			walker.Hunt (target);
+		} else {
+			SearchTarget ();
 		}
 	}
 
 	void OnTargetDead(Alive target) {
 		CommandIssued = false;
+		SearchTarget ();
 	}
 
 	void OnGotHit(Fighter attacker) {
@@ -150,6 +153,14 @@ public class CharController : MonoBehaviour {
 		ClearCommands();
 		bCollider.enabled = false;
 		visualController.PlayDeath();
+	}
+
+	void SearchTarget() {
+		if (soldierType.IsEnemy) {
+			soldierType.GetComponent<MinionEnemy> ().Fight();
+		} else if (soldierType.IsAlly) {
+			soldierType.GetComponent<MinionAlly> ().Fight();
+		}
 	}
 	#endregion
 }

@@ -50,6 +50,16 @@ public class AI_ControllerAlly : MonoBehaviour {
 		}
 	}
 
+	private void CheckTargets() {
+		int count = 0;
+		foreach (TargetableByAIAlly targetAlly in targetsAlly) {
+			count++;
+		}
+		if (count == 0) {
+			targetsAlly = FindObjectsOfType<TargetableByAIAlly> ();
+		}
+	}
+
 	/**
 	 * Ally target
 	 */
@@ -62,10 +72,13 @@ public class AI_ControllerAlly : MonoBehaviour {
 		float maxDistanceEngage = GetDistanceEngageMax (type);
 		TargetableByAIAlly closestTarget = null;
 
-		foreach(TargetableByAIAlly targetAlly in targetsAlly) {
-			if ((targetAlly != null) &&(!targetAlly.GetComponent<Alive>().IsDead)) {
-				float distance = Vector3.Distance(position, targetAlly.transform.position);
-				if (((distance < minDistance) || (closestTarget == null)) && (distance < maxDistanceEngage) ) {
+		/*Debug.Log (targetsAlly);
+		CheckTargets ();
+		Debug.Log (targetsAlly);*/
+		foreach (TargetableByAIAlly targetAlly in targetsAlly) {
+			if ((targetAlly != null) && (!targetAlly.GetComponent<Alive> ().IsDead)) {
+				float distance = Vector3.Distance (position, targetAlly.transform.position);
+				if (((distance < minDistance) || (closestTarget == null)) && (distance < maxDistanceEngage)) {
 					minDistance = distance;
 					closestTarget = targetAlly;
 				}

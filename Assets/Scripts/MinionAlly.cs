@@ -7,12 +7,14 @@ public class MinionAlly : MonoBehaviour {
 	private Fighter fighter;
 	private Alive alive;
 	private SoldierType soldierType;
+	private Walker walker;
 
 	void Start() {
 		charController = GetComponent<CharController>();
 		fighter = GetComponent<Fighter>();
 		alive = GetComponent<Alive>();
 		soldierType = GetComponent<SoldierType>();
+		walker = GetComponent<Walker> ();
 	}
 
 	public void Fight() {
@@ -33,9 +35,13 @@ public class MinionAlly : MonoBehaviour {
 			} else if (soldierType.magic) {
 				charController.Command_AttackMagic (closestTargetAlly.GetComponent<Alive> ());
 			} else {
-				Debug.Log ("Pas de classe déterminé");
+				Debug.Log ("Pas de type de combattant indiqué");
 			}
+		} else if (walker.IsInRallyPoint) {
+			new WaitForSeconds (3f);
+			StartCoroutine ("Fight");
 		} else {
+			// Debug.Log (walker.IsInRallyPoint);
 			charController.OnWalkToRallyPoint ();
 		}
 	}
@@ -46,7 +52,8 @@ public class MinionAlly : MonoBehaviour {
 	}
 
 	void OnGotHit(Fighter attacker) {
-		if (attacker.GetComponent<SoldierType> ().IsMelee && attacker.GetComponent<SoldierType> ().IsEnemy) {
+		SoldierType soldierTypeAttacker = attacker.GetComponent<SoldierType> ();
+		if (soldierTypeAttacker.IsMelee && soldierTypeAttacker.IsEnemy) {
 			Alive attackersAlive = attacker.GetComponent<Alive> ();
 			if (!fighter.IsFighting && !attackersAlive.IsDead && !alive.IsDead) {
 				charController.Command_AttackMelee (attackersAlive);
