@@ -20,6 +20,7 @@ public class Fighter : MonoBehaviour {
 	private SoldierType soldierType;
 
 	private bool fighting = false;
+	private Alive currentTarget;
 	public bool IsFighting {
 		get { return fighting; }
 	}
@@ -32,6 +33,7 @@ public class Fighter : MonoBehaviour {
 
 	public void Fight(Alive target) {
 		fighting = true;
+		Target = target;
 		if (soldierType.IsMelee) {
 			StartCoroutine ("FightCoroutineMelee", target);
 		} else {
@@ -101,6 +103,11 @@ public class Fighter : MonoBehaviour {
 	
 	private bool IsCloseToFight(Vector3 target) {
 		return IsCloseEnough (target) && !IsCloseTooMuch (target);
+	}
+
+	public Alive Target {
+		get { return currentTarget; }
+		set { currentTarget = value; }
 	}
 }
 

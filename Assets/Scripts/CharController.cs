@@ -11,6 +11,7 @@ public class CharController : MonoBehaviour {
 	private Alive currentTarget = null;
 	private Transform myTr;
 	private BoxCollider2D bCollider;
+	private SoldierType soldierType;
 
 	public bool CommandIssued { get; private set; }
 	public float rallyDistanceMin = 0.1f;
@@ -18,11 +19,12 @@ public class CharController : MonoBehaviour {
 
 	void Start() {
 		myTr = transform;
-		bCollider = GetComponent<BoxCollider2D>();
+		bCollider 		 = GetComponent<BoxCollider2D>();
 		visualController = GetComponent<VisualController>();
-		walker = GetComponent<Walker>();
-		fighter = GetComponent<Fighter>();
-		alive = GetComponent<Alive>();
+		walker 			 = GetComponent<Walker>();
+		fighter 		 = GetComponent<Fighter>();
+		alive 			 = GetComponent<Alive>();
+		soldierType 	 = GetComponent<SoldierType> ();
 
 		CommandIssued = false;
 	}
@@ -116,7 +118,15 @@ public class CharController : MonoBehaviour {
 	void OnAttack(Alive target) {
 		if (!IsDead() && (target != null)) {
 			visualController.Face( target.transform.position.x < myTr.position.x );
-			visualController.PlayAttack();
+			if (soldierType.IsMelee) {
+				visualController.PlayAttack ();
+			} else if (soldierType.IsRange) {
+				visualController.PlayRangeAttack ();
+			} else if (soldierType.IsMagic) {
+				visualController.PlayCast ();
+			} else {
+				visualController.PlayAttack ();
+			}
 		}
 	}
 

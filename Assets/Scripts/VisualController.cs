@@ -5,6 +5,10 @@ public class VisualController : MonoBehaviour {
 
 	public Animator anim;
 	public Transform swappingFaceTransform;
+	public Transform transform;
+
+	public GameObject projectile;
+	private Fighter fighter;
 
 	private int walkID = Animator.StringToHash("walk");
 	private int hitID = Animator.StringToHash("hit");
@@ -17,6 +21,10 @@ public class VisualController : MonoBehaviour {
 
 	private bool isFacingLeft = true;
 
+	void Start () {
+		transform = GetComponent<Transform> ();
+		fighter   = GetComponent<Fighter> ();
+	}
 
 	#region Facing
 	public void FaceLeft() {
@@ -51,6 +59,19 @@ public class VisualController : MonoBehaviour {
 	public void PlayAttack() {
 		anim.SetFloat( attackTypeID, UnityEngine.Random.Range(0, 2) );
 		anim.SetTrigger( attackID );
+	}
+
+	public void PlayRangeAttack() {
+		anim.SetFloat( attackTypeID, UnityEngine.Random.Range(0, 2) );
+		anim.SetTrigger( attackID );
+
+		Debug.Log (fighter.Target);
+		Vector3 dir = fighter.Target.transform.position - transform.position;
+		dir = fighter.Target.transform.InverseTransformDirection(dir);
+		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		Debug.Log (angle);
+
+		GameObject arrow = Instantiate (projectile, new Vector3 (transform.position.x, transform.position.y + 0.9f, transform.position.z), Quaternion.AngleAxis (angle + 270, Vector3.forward)) as GameObject;
 	}
 	
 	public void PlayCast() {
