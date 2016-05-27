@@ -75,7 +75,7 @@ public class Fighter : MonoBehaviour {
 			SendMessage("OnAttack", target, SendMessageOptions.DontRequireReceiver);
 			// A remplacer par une coroutine qui lancera la suite quand la flèche atteindra sa cible
 			yield return new WaitForSeconds(1f);
-			target.GetHit( this );
+			// target.GetHit( this );
 			yield return new WaitForSeconds( attackRate );
 		}
 
