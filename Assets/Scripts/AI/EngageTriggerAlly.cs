@@ -13,6 +13,7 @@ public class EngageTriggerAlly : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.isTrigger != true && col.CompareTag ("Enemy")) {
+			// Debug.Log ("OnTriggerEnter2D");
 			this.SendMessageUpwards("FightClosestTarget", minionAlly);
 		}
 	}

@@ -5,6 +5,7 @@ public class Arrow : MonoBehaviour {
 
 	public float speed = 10;
 	private Rigidbody2D rigidBody;
+	public GameObject attacker;
 
 	public string AttackerTag;
 	public bool hasHit = false;
@@ -31,13 +32,13 @@ public class Arrow : MonoBehaviour {
 			if (AttackerTag == "Enemy") {
 				if (col.isTrigger != true && (col.CompareTag ("Ally") || col.CompareTag ("Player"))) {
 					hasHit = true;
-					col.SendMessageUpwards ("GetHit", col.GetComponent<Fighter> ());
+					col.GetComponent<Alive> ().GetHit(attacker.GetComponent<Fighter>());
 					StartCoroutine ("DestroyArrow");
 				}
 			} else if (AttackerTag == "Ally") {
 				if (col.isTrigger != true && col.CompareTag ("Enemy")) {
 					hasHit = true;
-					col.SendMessageUpwards ("GetHit", col.GetComponent<Fighter> ());
+					col.GetComponent<Alive> ().GetHit(attacker.GetComponent<Fighter>());
 					StartCoroutine ("DestroyArrow");
 				}
 			}
