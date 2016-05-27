@@ -67,21 +67,13 @@ public class VisualController : MonoBehaviour {
 	public void PlayRangeAttack() {
 		anim.SetFloat( attackTypeID, UnityEngine.Random.Range(0, 2) );
 		anim.SetTrigger( attackID );
-
-		// Animation animator = GetComponent<Animation>();
-		// animator.Play();
-		// Debug.Log(animator.clip.length);
-		// yield return new WaitForSeconds(anim.clip.length);
-
-		// AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-		// Debug.Log(info.length);
-
-		StartCoroutine ("ShootArrow");
+		StartCoroutine ("FireArrow");
 	}
 	
 	public void PlayCast() {
 		anim.SetFloat( castTypeID , UnityEngine.Random.Range(0, 2) );
 		anim.SetTrigger( castID );
+		StartCoroutine ("FireMagic");
 	}
 	
 	public void PlayDeath() {
@@ -95,7 +87,7 @@ public class VisualController : MonoBehaviour {
 	#endregion
 
 	// Wait the middle of fire animation before show the arrow
-	private IEnumerator ShootArrow() {
+	private IEnumerator FireArrow() {
 		yield return new WaitForSeconds (fireAnimationDuration);
 
 		Vector3 dir = fighter.Target.transform.position - transform.position;
@@ -103,5 +95,16 @@ public class VisualController : MonoBehaviour {
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
 		GameObject arrow = Instantiate (projectile, new Vector3 (transform.position.x, transform.position.y + 0.9f, transform.position.z), Quaternion.AngleAxis (angle + 270, Vector3.forward)) as GameObject;
+	}
+
+	// Wait the middle of fire animation before show the magic attack
+	private IEnumerator FireMagic() {
+		yield return new WaitForSeconds (fireAnimationDuration);
+
+		Vector3 dir = fighter.Target.transform.position - transform.position;
+		dir = fighter.Target.transform.InverseTransformDirection(dir);
+		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+		GameObject arrow = Instantiate (projectile, new Vector3 (transform.position.x + 1.2f, transform.position.y + 1.6f, transform.position.z), Quaternion.AngleAxis (angle + 270, Vector3.forward)) as GameObject;
 	}
 }

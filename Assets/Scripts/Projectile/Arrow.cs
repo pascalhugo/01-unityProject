@@ -5,7 +5,6 @@ public class Arrow : MonoBehaviour {
 
 	public float speed = 10;
 	private Rigidbody2D rigidBody;
-	// private GameObject gameObject;
 
 	public string AttackerTag;
 	public bool hasHit = false;
@@ -20,12 +19,12 @@ public class Arrow : MonoBehaviour {
 		// rigidBody.transform.rotation.SetLookRotation(transform.position + rigidBody.velocity);
 	}
 
-	void FixedUpdate () {
+	/*void FixedUpdate () {
 		// transform.LookAt (transform.position + rigidBody.velocity);
-		/*var dir = rigidBody.transform.position;
+		var dir = rigidBody.transform.position;
 		var angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
-		rigidBody.transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);*/
-	}
+		rigidBody.transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
+	}*/
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (hasHit != true) {
