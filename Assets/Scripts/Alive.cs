@@ -12,11 +12,33 @@ using UnityEngine;
 using System.Collections;
 
 public class Alive : MonoBehaviour {
-				
-	public int hp = 100;//show in inspector only
+
+	private HealthBar healthBar;
+
+	public int hp = 100;
+	public int maxHp = 100;
+
+	void Start () {
+		healthBar = GetComponentInChildren<HealthBar> ();
+	}
+
+	void Update() {
+		if (healthBar) {
+			if (HP != MaxHP) {
+				healthBar.gameObject.SetActive (true);
+			} else {
+				healthBar.gameObject.SetActive (false);
+			}
+		}
+	}
+
 	public int HP {
 		get { return hp; }
 		private set { hp = value; }
+	}
+
+	public int MaxHP {
+		get { return maxHp; }
 	}
 	
 	public bool IsDead {
@@ -56,6 +78,7 @@ public class Alive : MonoBehaviour {
 	}
 
 	private IEnumerator DestroyCorpseCoroutine() {
+		healthBar.DestroyAll ();
 		yield return new WaitForSeconds(5f);
 		Destroy(gameObject);
 	}

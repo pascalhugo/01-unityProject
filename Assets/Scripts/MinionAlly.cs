@@ -56,7 +56,7 @@ public class MinionAlly : MonoBehaviour {
 		if (soldierTypeAttacker.IsMelee && soldierTypeAttacker.IsEnemy) {
 			Alive attackersAlive = attacker.GetComponent<Alive> ();
 			if (!fighter.IsFighting && !attackersAlive.IsDead && !alive.IsDead) {
-				charController.Command_AttackMelee (attackersAlive);
+				// charController.Command_AttackMelee (attackersAlive);
 			}
 		}
 	}

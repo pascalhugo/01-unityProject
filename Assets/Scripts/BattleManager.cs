@@ -29,7 +29,7 @@ public class BattleManager : MonoBehaviour {
 
 		yield return new WaitForSeconds(0f);
 		AI_ControllerEnemy.Instance.SendWave_1();
-		AI_ControllerAlly.Instance.SendWave_1();
+		// AI_ControllerAlly.Instance.SendWave_1();
 
 		/*do {
 			yield return new WaitForSeconds(1f);

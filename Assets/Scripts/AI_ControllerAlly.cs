@@ -72,9 +72,9 @@ public class AI_ControllerAlly : MonoBehaviour {
 		float maxDistanceEngage = GetDistanceEngageMax (type);
 		TargetableByAIAlly closestTarget = null;
 
-		/*Debug.Log (targetsAlly);
-		CheckTargets ();
-		Debug.Log (targetsAlly);*/
+		//Debug.Log (targetsAlly);
+		//CheckTargets ();
+		//Debug.Log (targetsAlly);
 		foreach (TargetableByAIAlly targetAlly in targetsAlly) {
 			if ((targetAlly != null) && (!targetAlly.GetComponent<Alive> ().IsDead)) {
 				float distance = Vector3.Distance (position, targetAlly.transform.position);
